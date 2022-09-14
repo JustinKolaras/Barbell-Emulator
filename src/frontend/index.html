@@ -20,6 +20,13 @@
                     let combinations = {25: 0, 20: 0, 15: 0, 10: 0, 5: 0, 2.5: 0, 1.25: 0, 0.5: 0, 0.25: 0};
                     let sortedKeyCombinations = Object.keys(combinations).sort((a, b) => b - a);
                     for (plateWeight of sortedKeyCombinations) {
+                        // In error.
+                        // The following division calculation needs to return a number, which:
+                        // a) is even, and
+                        // b) is whole.
+                        // Otherwise, do as best as we can, and take the remainder of the number and substitute it to be
+                        // made up for in smaller weight plates.
+                        // This is a considerable problem to solve.
                         const num = workingWeight / plateWeight;
                         combinations[plateWeight] = num;
                         workingWeight = workingWeight - (num * plateWeight);
